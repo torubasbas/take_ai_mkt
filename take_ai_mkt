@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIで変われる｜2025年、本当に稼げるAI副業術</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+        }
+        .btn-line {
+            background-color: #06C755;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .btn-line:hover {
+            background-color: #05ae4a;
+        }
+        .accordion-header {
+            cursor: pointer;
+            padding: 1rem 1.5rem;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #2c5282; /* Darker blue for heading */
+        }
+        .accordion-content {
+            padding: 1rem 1.5rem;
+            background-color: #fcfcfc;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.4s ease-out;
+            color: #4a5568; /* Grayish blue for content */
+        }
+        .accordion-header svg {
+            transition: transform 0.3s ease;
+        }
+        .accordion-header.active svg {
+            transform: rotate(180deg);
+        }
+        .sticky-line-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: none; /* Hidden by default, shown via JS */
+        }
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Keyframe for a subtle pulse animation on the LINE button */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .animate-pulse-line {
+            animation: pulse 1.8s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Sticky LINE Button -->
+    <div id="stickyLineBtn" class="sticky-line-button">
+        <a href="https://lin.ee/wPd4GwL" target="_blank" rel="noopener noreferrer"
+           class="btn-line px-6 py-4 rounded-full text-lg font-bold shadow-lg flex items-center justify-center space-x-2 animate-pulse-line">
+            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.824 14.316c-.22.02-.44.02-.66 0-.317-.03-.635-.06-.952-.09-.597-.059-1.194-.12-1.79-.18-.323-.03-.646-.06-.969-.09-.452-.03-.904-.06-1.356-.09-.436-.029-.87-.058-1.305-.087-.168-.008-.337-.017-.505-.025-.262-.01-.523-.02-.785-.02-.158 0-.317 0-.475 0-.12 0-.239 0-.359 0-.083 0-.166 0-.25 0-.172 0-.344-.002-.516-.005C6.035 15.617 5 13.923 5 12c0-2.316 1.488-4.27 3.55-4.717.185-.04.37-.08.555-.11.455-.07.91-.14 1.365-.21.284-.04.568-.08.852-.11.23-.03.46-.06.69-.09.19-.02.378-.04.567-.05.158-.009.317-.018.475-.027.085-.005.17-.01.255-.015.086-.005.172-.01.258-.014.2-.008.4-.015.6-.02.16-.004.32-.008.48-.012.35-.008.7-.015 1.05-.02.04-.002.08-.003.12-.005zm-1.895-.494a.5.5 0 01-.635.485c-2.483-.437-4.225-2.614-4.225-5.113 0-2.513 1.76-4.685 4.26-5.113a.5.5 0 01.485.635l-.26.853a.5.5 0 01-.635.485c-1.68-.295-2.855-1.72-2.855-3.395 0-1.695 1.192-3.136 2.895-3.415a.5.5 0 01.635.485l.26.853a.5.5 0 01-.485.635z"/>
+            </svg>
+            <span>LINEで無料レクチャーを予約！</span>
+        </a>
+    </div>
+
+    <header class="gradient-bg text-white py-12 px-4 rounded-b-xl shadow-md">
+        <div class="container text-center">
+            <p class="text-xl md:text-2xl font-bold mb-2">もう「AI副業」という言葉に惑わされない</p>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+                2025年、<br class="md:hidden">本当に稼げるAIを活用した<br class="md:hidden"> 副業術
+            </h1>
+            <p class="text-lg md:text-xl mb-6">
+                「自分も、そろそろ何か始めなきゃ」<br>
+                そう思ってるだけで1ヶ月が過ぎていませんか？
+            </p>
+            <div class="bg-white text-gray-800 p-6 rounded-xl shadow-lg mb-8 mx-auto max-w-md">
+                <p class="text-left font-bold text-xl mb-4 text-blue-700">このLPでは、あなたにこんな情報をお届けします。</p>
+                <ul class="text-left space-y-3 text-lg">
+                    <li class="flex items-center">
+                        <span class="text-green-500 mr-2 text-2xl">✅</span>
+                        僕が “スキルゼロ”からAI副業で人生を変えたリアルな手法
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-green-500 mr-2 text-2xl">✅</span>
+                        本業や家事をしながら、 仕組みで“勝手に収益が出る”AI副業モデル
+                    </li>
+                </ul>
+            </div>
+            <p class="text-xl md:text-2xl font-semibold mb-6">
+                「やってみたいけど自信がない」「今の生活を壊さずに副業したい」<br>
+                そんなあなたのための、月15名限定の無料レクチャー も実施中！
+            </p>
+            <a href="https://lin.ee/wPd4GwL" target="_blank" rel="noopener noreferrer"
+               class="btn-line inline-flex items-center justify-center px-8 py-5 rounded-full text-2xl font-bold shadow-xl hover:scale-105 transform transition-all duration-300 animate-pulse-line">
+                <svg class="w-8 h-8 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.824 14.316c-.22.02-.44.02-.66 0-.317-.03-.635-.06-.952-.09-.597-.059-1.194-.12-1.79-.18-.323-.03-.646-.06-.969-.09-.452-.03-.904-.06-1.356-.09-.436-.029-.87-.058-1.305-.087-.168-.008-.337-.017-.505-.025-.262-.01-.523-.02-.785-.02-.158 0-.317 0-.475 0-.12 0-.239 0-.359 0-.083 0-.166 0-.25 0-.172 0-.344-.002-.516-.005C6.035 15.617 5 13.923 5 12c0-2.316 1.488-4.27 3.55-4.717.185-.04.37-.08.555-.11.455-.07.91-.14 1.365-.21.284-.04.568-.08.852-.11.23-.03.46-.06.69-.09.19-.02.378-.04.567-.05.158-.009.317-.018.475-.027.085-.005.17-.01.255-.015.086-.005.172-.01.258-.014.2-.008.4-.015.6-.02.16-.004.32-.008.48-.012.35-.008.7-.015 1.05-.02.04-.002.08-.003.12-.005zm-1.895-.494a.5.5 0 01-.635.485c-2.483-.437-4.225-2.614-4.225-5.113 0-2.513 1.76-4.685 4.26-5.113a.5.5 0 01.485.635l-.26.853a.5.5 0 01-.635.485c-1.68-.295-2.855-1.72-2.855-3.395 0-1.695 1.192-3.136 2.895-3.415a.5.5 0 01.635.485l.26.853a.5.5.5 0 01-.485.635z"/>
+                </svg>
+                <span>LINEで無料レクチャーを予約！</span>
+            </a>
+            <p class="mt-4 text-sm md:text-base">
+                まだ副業を始めていない方も、この記事を読むだけで次の行動が明確になります。
+            </p>
+            <p class="text-sm md:text-base">
+                あなたの可能性を広げる“選択肢”を1つ、贈りするので必ず最後までご覧ください！
+            </p>
+        </div>
+    </header>
+
+    <main class="container py-8">
+        <!-- Section: 自己紹介 -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-6 text-blue-800">
+                まずは簡単に自己紹介させてください
+            </h2>
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <p class="mb-4">
+                    僕は工業高校を卒業後、先生の勧めで地元の工場に就職しました。当時は「とりあえず大企業に入っとけばなんとかなるだろう」と甘く考えていましたが、現実はそんなに甘くなかったんです。
+                </p>
+                <ul class="list-disc list-inside space-y-2 mb-4 pl-4 text-red-600 font-semibold">
+                    <li>手取りはまさかの<span class="text-2xl font-bold">13万円</span></li>
+                    <li>毎月の残業<span class="text-2xl font-bold">20時間超え</span>は確定</li>
+                    <li>入社2ヶ月目から<span class="text-2xl font-bold">夜勤</span>スタート</li>
+                </ul>
+                <p class="mb-4">
+                    当時18歳だった僕は、こう思いました。<br>
+                    <span class="text-xl font-bold text-red-700">「え、これが“安定”ってやつなの…？」</span>
+                </p>
+                <p class="mb-4">
+                    仕事に追われ、自由もなく、お金も足りない。正直、絶望しました。
+                </p>
+                <p class="mb-4">
+                    そんな僕を救ってくれたのが、当時ネットで話題になり始めていたアフィリエイトでした。AIなんて存在しない時代、独学で必死に学び、寝る時間を削って記事を書き続けました。誰にも相談できず、不安と戦い続ける孤独な日々でした。
+                </p>
+                <p class="mb-4">
+                    恋愛系のアフィリエイトやnote販売で、少しずつ結果が出始め、月に20万円ほど稼げるようになりました。しかし、そこにたどり着くまでの道のりは本当に過酷でした。
+                </p>
+                <p class="mb-4 font-bold text-blue-700">
+                    でも、だからこそ気づけた「最短で稼ぐ方法」があります。
+                </p>
+                <p>
+                    しかも、今は当時と違って“AI”がある。正直、僕がゼロから始めたあの頃と比べて、<span class="text-xl font-bold text-green-700">今は圧倒的にチャンスの時代です。</span>
+                </p>
+            </div>
+        </section>
+
+        <hr class="border-t-2 border-gray-200 my-8">
+
+        <!-- Section: このLPで伝えたいこと -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-6 text-blue-800">
+                このLPであなたに伝えたいこと
+            </h2>
+            <div class="bg-blue-50 p-6 rounded-xl shadow-md border-l-4 border-blue-500">
+                <p class="mb-4 text-lg">
+                    僕は遠回りしまくりました。でも、だからこそ気づけた<span class="font-bold text-blue-700">「最短で稼ぐ方法」</span>があります。
+                </p>
+                <ul class="text-left space-y-3 text-lg mb-6">
+                    <li class="flex items-start">
+                        <span class="text-green-500 mr-2 text-2xl font-bold">✅</span>
+                        <p>AIを活用した最新アフィリエイト手法</p>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-green-500 mr-2 text-2xl font-bold">✅</span>
+                        <p>初心者でも再現できるAI副業3選</p>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-green-500 mr-2 text-2xl font-bold">✅</span>
+                        <p>最短で結果を出すための戦略とステップ</p>
+                    </li>
+                </ul>
+                <p class="text-lg font-semibold">
+                    これらを、初心者でもすぐに実践できる形でまとめています。<br>
+                    <span class="text-xl font-bold text-orange-600">「今こそ、本気で副業を始めたい」</span><br>
+                    そんなあなたにこそ、最後まで読んでほしい内容です。
+                </p>
+            </div>
+        </section>
+
+        <hr class="border-t-2 border-gray-200 my-8">
+
+        <!-- Section: 今、注目されている「AI副業」…でも本当に稼げるのはどれ？ -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-6 text-blue-800">
+                今、注目されている「AI副業」…<br class="md:hidden">でも本当に稼げるのはどれ？
+            </h2>
+            <div class="bg-white p-6 rounded-xl shadow-md mb-8">
+                <p class="mb-4 text-lg">
+                    最近よく目にするAI副業は、確かに「すぐに売れる」魅力があります。
+                </p>
+                <ul class="list-disc list-inside space-y-2 mb-4 pl-4 text-blue-700">
+                    <li>AI美女を使ったグッズ物販（BOOTH、SUZURIなど）</li>
+                    <li>AI画像を活用したLINEスタンプ販売</li>
+                    <li>AIを活用したWEBライター</li>
+                </ul>
+                <p class="text-sm text-gray-500 mb-6">（画像出典：株式会社ファングリー・アンケトス調べ）</p>
+                <p class="mb-4 text-lg font-bold text-red-600">
+                    しかし、これらの「作業型副業」には、見落としがちなリスクがあります。
+                </p>
+                <ul class="list-disc list-inside space-y-2 mb-6 pl-4 text-red-600">
+                    <li>商品を自分で作る必要がある（1日2〜3時間の作業）</li>
+                    <li>売れなければ利益ゼロ</li>
+                    <li>利益率が薄く、月3万円以上稼ぐには地獄のような更新頻度に…</li>
+                    <li>トレンドであるゆえに、いずれ廃れる可能性が高い</li>
+                </ul>
+                <p class="text-lg">
+                    つまり、時間の切り売りからは抜け出せない上に、トレンドの波が引いた瞬間、一気に稼げなくなるリスクも抱えているのです。
+                </p>
+            </div>
+
+            <h3 class="text-2xl font-bold text-center mb-6 text-blue-800">
+                【放置OK】投稿が自販機になるAIショート動画副業とは？
+            </h3>
+            <div class="bg-green-50 p-6 rounded-xl shadow-md border-l-4 border-green-500">
+                <p class="mb-4 text-lg">
+                    私がこのページで紹介する副業の3つのうち2つは、<br>
+                    <span class="font-bold text-green-700">「AI × ショート動画」</span>を活用したモデルです。
+                </p>
+                <p class="mb-4">このモデルは、一度作れば“資産”として働き続ける、まるで自動販売機のようなビジネスです。</p>
+                <div class="bg-white p-4 rounded-lg shadow-inner mb-6">
+                    <p class="font-bold mb-2">ざっくり流れはこんな感じ👇</p>
+                    <ol class="list-decimal list-inside space-y-1">
+                        <li>AIで半自動生成できる動画（雑学、占い系、動物系）を作る</li>
+                        <li>SNSにショート動画として投稿（TikTok、YouTube Shorts）</li>
+                        <li>視聴・保存・フォローからLINE誘導 or アフィ誘導で収益化</li>
+                    </ol>
+                </div>
+                <ul class="space-y-3 mb-6 text-lg font-semibold text-green-700">
+                    <li class="flex items-center">
+                        <span class="text-yellow-500 mr-2 text-2xl">🔁</span>
+                        1日投稿すれば、翌日は投稿なしでも再生回る
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-yellow-500 mr-2 text-2xl">📈</span>
+                        フォロワー数＝収益性UP（収入にレバレッジが効く）
+                    </li>
+                    <li class="flex items-center">
+                        <span class="text-yellow-500 mr-2 text-2xl">🧩</span>
+                        ツールでの自動化・外注化が可能（完全仕組み化も可能）
+                    </li>
+                </ul>
+                <p class="mb-4 text-lg">
+                    本当に稼げるのか？再現性はある？<br>
+                    結論から言うと、<span class="font-bold text-orange-600">あります。</span>
+                </p>
+                <div class="bg-white p-4 rounded-lg shadow-inner">
+                    <p class="font-bold mb-2">なぜなら、次の3条件を満たしているから👇</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><span class="font-bold">需要がある：</span>「癒し」「ストレス解消」「恋の悩み」「将来の不安」など、人の感情に寄り添えるコンテンツは、エンタメより遥かに刺さるんです。</li>
+                        <li><span class="font-bold">差別化しやすい：</span>動画ビジュアルや、演出パターンに個性が出せる。顔出ししないでも“キャラ化”が可能。</li>
+                        <li><span class="font-bold">初心者でも実践可能なテンプレがある：</span>投稿の型やリンク誘導までテンプレ化されているから、最初から迷わずに進める。</li>
+                    </ul>
+                </div>
+                <p class="text-center text-xl font-bold mt-6 text-blue-700">
+                    実際、Tiktok運用開始→<span class="text-red-600">2週間で月3万超えた人もいます。</span><br>
+                    大事なのは「正しい順番」と「ミスらない導線設計」だけです。
+                </p>
+            </div>
+        </section>
+
+        <hr class="border-t-2 border-gray-200 my-8">
+
+        <!-- Section: たけ式AI副業とは？3つの柱 -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-6 text-blue-800">
+                たけ式AI副業とは？<br class="md:hidden">3つの柱
+            </h2>
+            <p class="mb-8 text-center text-lg">
+                「仕組みさえ作れば、誰でも“ラクに継続できる副業”ができる」<br>
+                ここからは僕が実際にやってきたおすすめの手法を3つ簡単にご紹介します。
+            </p>
+
+            <!-- Accordion 1: アフィリエイト -->
+            <div class="bg-white rounded-xl shadow-md mb-6 overflow-hidden">
+                <div class="accordion-header" data-accordion="1">
+                    <span class="text-xl">❶ アフィリエイト <span class="text-sm ml-2 text-gray-500">(タップで詳細)</span></span>
+                    <svg class="w-6 h-6 transform rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="accordion-content" id="content-1">
+                    <p class="mb-4">
+                        アフィリエイトは「もう稼げない」と思われがちですが、それは完全な勘違いです。実は今アフィに取り組んでる人の9割以上がうまくいっていません。
+                    </p>
+                    <p class="font-bold text-red-600 mb-2">なぜなら──</p>
+                    <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
+                        <li>SNSで拡散されてるノウハウが“薄くて抽象的”すぎる</li>
+                        <li>正しい導線や心理導入がわかっていない</li>
+                        <li>自分の投稿が「誰に」「何を」届けてるかすら理解していない</li>
+                    </ul>
+                    <p class="mb-4">
+                        つまり、みんな参戦はしてるけど、ちゃんと戦えていない状態なんです。<br>
+                        だからこそ、今が<span class="font-bold text-green-700">ブルーオーシャン</span>なんです！
+                    </p>
+                    <p class="mb-4">
+                        再現性あるやり方をちゃんと学んで、<span class="font-bold text-blue-700">「誰に」「何を」「どのタイミングで」</span>見せれば人は動くのかを理解し、仕組み化できれば、競合はめちゃくちゃ少ない。
+                    </p>
+                    <p class="mb-4 font-bold text-lg">
+                        AIやショート動画、LINE誘導を組み合わせれば、正直毎月安定して<span class="text-orange-600">30万は通過点。</span>しかも一度仕組み化すれば、<span class="text-red-700">“あなたが寝てる間”にさえ収益が発生</span>するようになります。
+                    </p>
+                    <h4 class="font-bold text-blue-700 mb-2">例えば、アダルトアフィリエイト</h4>
+                    <p class="mb-4">
+                        “ちょっと寂しがり屋な女の子”のアカウントを演じて、マッチングアプリや出会い系を紹介していく副業です。<br>
+                        たとえばXで「今日もひとりで寝るのな…🥺」「誰かと話したい気分…DMきてほしいな」みたいな投稿をしながら、プロフにこっそりアフィリンクを貼っておく。そこから“寂しさ”や“恋愛欲求”を抱えてる男性がアプリに登録してくれるだけで、1件で1,000円〜1,500円の報酬が入ります。
+                    </p>
+                    <h4 class="font-bold text-blue-700 mb-2">実際に紹介するアプリは？（ASP例）</h4>
+                    <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
+                        <li>アドネックス（大手。案件多め）</li>
+                        <li>マチアフィ（マッチング系に強い）</li>
+                        <li>アポロ（特単出やすく、単価高め）</li>
+                    </ul>
+                    <p class="mb-4">
+                        例：ハッピーメール登録 → 1件1,100円、PCMAXダウンロード → 1,200円、ワクワクメール登録 → 900円 など
+                    </p>
+                    <p class="mb-4 font-bold text-lg">
+                        リアルな話、1日2〜3投稿＋プロフリンク設置だけで、<span class="text-orange-600">月5〜10万は普通に狙えます。</span>「登録だけで報酬発生」という超ゆるい案件もあるので、初心者でも始めやすいです。
+                    </p>
+                    <p class="mb-4 text-center text-lg">
+                        アフィリエイトは「SNSアカウント＋画像＋一言＋リンク」これだけ。<br>
+                        それが“人の感情”に刺されば、自動で収益が発生し続ける仕組みになります。<br>
+                        ぶっちゃけ、<span class="text-red-700 font-bold">「1投稿＝2万円の自販機」</span>みたいな感覚です。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Accordion 2: AI×ショート動画で稼ぐ -->
+            <div class="bg-white rounded-xl shadow-md mb-6 overflow-hidden">
+                <div class="accordion-header" data-accordion="2">
+                    <span class="text-xl">❷ AI×ショート動画で稼ぐ <span class="text-sm ml-2 text-gray-500">(タップで詳細)</span></span>
+                    <svg class="w-6 h-6 transform rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="accordion-content" id="content-2">
+                    <p class="mb-4">
+                        これは一言でいうと、TikTokやYouTube Shortsに雑学・占い・AI猫ショート動画を投稿して、バズらせて稼ぐ副業です。
+                        しかもただバズらせて終わりじゃなく、<span class="font-bold text-green-700">ちゃんと“収益が発生する導線”まで繋げられます。</span>
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg shadow-inner mb-4">
+                        <p class="font-bold mb-2">ざっくり流れはこんな感じ👇</p>
+                        <ol class="list-decimal list-inside space-y-1">
+                            <li>GPTsで動画台本を作る</li>
+                            <li>それをベースに、ショート動画を量産</li>
+                            <li>ストックをTikTokやYouTubeに投稿</li>
+                            <li>バズったら→プロフのリンクからLINEオプトインやアフィ案件を紹介して収益化</li>
+                        </ol>
+                    </div>
+                    <p class="font-bold text-blue-700 mb-2">💡なんでこれが強いの？</p>
+                    <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
+                        <li>TikTokはバズれば勝手に再生され続ける。</li>
+                        <li>LINE登録（オプトイン）は「全再生の0.2％が登録する」という有名データがある。
+                            <br>（例：5万再生されたら→100人がLINE登録してくれる計算。1件300円〜1500円の報酬がポンポン入る。）</li>
+                    </ul>
+                    <p class="mb-4 text-lg font-bold">
+                        僕の生徒さんはTikTokのみの発信で先月は<span class="text-red-600">”1186人”のLINE登録</span>を獲得！<br>
+                        一件500円の案件でも<span class="text-red-600">59万円の収益</span>を出しています。
+                    </p>
+                    <h4 class="font-bold text-blue-700 mb-2">📈 稼げる導線はこんな感じ</h4>
+                    <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
+                        <li>LINEオプトイン案件</li>
+                        <li>コンテンツアフィ（教材、AIツール、編集講座など）</li>
+                        <li>企業案件（「このAIで作りました」ってPR）</li>
+                    </ul>
+                    <p class="mb-4">
+                        しかもTikTokのいいところは、バズるのがめっちゃ早い、顔出し不要、動画はテンプレ化できるから毎日投稿も余裕。一回作った動画が“自動販売機”になる感覚です。
+                    </p>
+                    <p class="mb-4 font-bold text-green-700">この副業のすごいところは…<br>「スモールビジネス」になるということ。</p>
+                    <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
+                        <li>自動化できる（スケジュール投稿、AIで素材生成）</li>
+                        <li>外注化できる（動画編集、ナレーション任せられる）</li>
+                        <li>M&Aもできる（フォロワー数次第でアカ売却可能）</li>
+                    </ul>
+                    <p class="text-lg text-center font-bold">
+                        この時点で「え、やってみたいかも」って思った人、正解です。<br>
+                        まだまだブルーオーシャン。今のうちに仕組み作ったもん勝ちです。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Accordion 3: アカウント売却（M&A） -->
+            <div class="bg-white rounded-xl shadow-md mb-6 overflow-hidden">
+                <div class="accordion-header" data-accordion="3">
+                    <span class="text-xl">❸ アカウント売却（M&A） <span class="text-sm ml-2 text-gray-500">(タップで詳細)</span></span>
+                    <svg class="w-6 h-6 transform rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="accordion-content" id="content-3">
+                    <p class="mb-4">
+                        運用だけじゃなく、実は売ることで<span class="font-bold text-orange-600">1アカウント500万円以上</span>も狙えます。
+                        今、“SNSアカウントの売買”はめちゃくちゃアツい市場になっています。
+                    </p>
+                    <p class="mb-4">
+                        特にAIで作った雑学アカウントや、アニメ系・占い系のアカウントは、完成された仕組みと将来性さえあれば、フォロワー1万人いかなくても売れる可能性があります。
+                    </p>
+                    <h4 class="font-bold text-blue-700 mb-2">例えばどんなアカウントが売れるの？</h4>
+                    <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
+                        <li>AI美女のTikTokアカ（美容垢風・擬似彼女風など）</li>
+                        <li>完全に仕組み化できる雑学動画系垢</li>
+                        <li>アニメキャラっぽい投稿で構成されたオタク系垢</li>
+                        <li>占い×AIのアカウント（例：恋愛の女神が日々アドバイスをくれる垢）</li>
+                        <li>ストーリー仕立てでフォロワーが感情移入できるアカウント</li>
+                    </ul>
+                    <p class="mb-4">
+                        TikTokなら「1投稿目で伸びる」が当たり前なので、短期間で“売れる状態”まで育てることが可能です。
+                    </p>
+                    <h4 class="font-bold text-blue-700 mb-2">実際どうやって売るの？</h4>
+                    <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
+                        <li>ラッコM&Aがベター</li>
+                        <li>SNS内で売買グループに参加して直接取引</li>
+                    </ul>
+                    <p class="mb-4 font-bold text-lg">
+                        価格帯は、フォロワー3,000人〜5,000人くらいで<span class="text-orange-600">10〜30万円</span>、1万人以上だと<span class="text-red-600">200万円〜500万円</span>で売れることもあります。さらに希望者には“アカウント育成＋売却サポート”もできます。
+                    </p>
+                    <p class="mb-4 text-center text-lg">
+                        運用の感覚は“農業”に近いかもしれません。1アカウントを種から育てて、一定のフォロワーや世界観が整ったら“収穫”＝売却。
+                    </p>
+                    <p class="mb-4">しかもAIを使えば、</p>
+                    <ul class="list-disc list-inside space-y-1 mb-4 pl-4 font-semibold text-green-700">
+                        <li>顔出し不要</li>
+                        <li>自分の時間をほとんど使わずに作業できる</li>
+                        <li>一人で複数アカウント同時進行もOK</li>
+                    </ul>
+                    <p class="text-lg text-center font-bold">
+                        収益化も売却もどっちも狙えるし、「自分がやらなくても回る資産」を持てる感覚になります。<br>
+                        まさに個人でできる<span class="text-blue-700">“デジタル農業”</span>です🌱
+                    </p>
+                </div>
+            </div>
+
+            <p class="text-center mt-8 text-lg font-semibold">
+                ここまで読んで、「なんとなくたけ式のイメージは掴めた」<br>
+                そう思ってもらえたかもしれません。
+            </p>
+            <p class="text-center font-bold text-xl text-red-600 mt-4">
+                でも、正直に言います。<br>
+                文章だけでは、本当に大事な部分は伝えきれません。
+            </p>
+            <p class="text-center text-xl mt-4 font-bold text-blue-800">
+                なぜなら——<br>
+                「副業の正解」は、人によって全く違うからです。
+            </p>
+        </section>
+
+        <hr class="border-t-2 border-gray-200 my-8">
+
+        <!-- Section: 無料電話レクチャーCTA -->
+        <section class="gradient-bg text-white py-10 px-4 rounded-xl shadow-lg text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-6">
+                あなただけの<br class="md:hidden">副業ロードマップを<br class="md:hidden">作成します
+            </h2>
+            <p class="text-xl md:text-2xl mb-6">
+                それが、<span class="font-bold">この「無料電話レクチャー」です📞</span>
+            </p>
+            <p class="text-lg md:text-xl mb-6">
+                1人1人、状況を伺いながら、<br>
+                「今のあなたに合ったスタート地点」と「具体的なステップ」をその場で作ります。
+            </p>
+            <ul class="text-left space-y-3 text-lg md:text-xl bg-white text-gray-800 p-6 rounded-lg shadow-md mx-auto max-w-md mb-8">
+                <li class="flex items-center"><span class="text-blue-500 mr-2 text-2xl">👉</span> どこから始めるべきか</li>
+                <li class="flex items-center"><span class="text-blue-500 mr-2 text-2xl">👉</span> 何をすぐにやるべきか</li>
+                <li class="flex items-center"><span class="text-blue-500 mr-2 text-2xl">👉</span> 何を今やらなくていいのか</li>
+            </ul>
+            <p class="text-lg md:text-xl font-semibold mb-8">
+                あなたに合わせた“道筋”をその場で言語化し、<br>
+                あなただけの収益化ロードマップを作成します。
+            </p>
+
+            <h3 class="text-2xl md:text-3xl font-bold mb-4">▼ 無料電話レクチャーについて</h3>
+            <div class="text-left bg-white text-gray-800 p-6 rounded-lg shadow-md mx-auto max-w-lg mb-8">
+                <p class="font-bold text-lg mb-2">対象者</p>
+                <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
+                    <li>副業を始めたいけど、何からすればいいかわからない</li>
+                    <li>AIやSNSを活用して稼げるか興味はあるけど、自信がない</li>
+                    <li>再現性のある仕組みで副業をしたい</li>
+                </ul>
+                <p class="font-bold text-lg mb-2">内容（30分〜60分）</p>
+                <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
+                    <li>あなたの状況に応じた副業のステップ提案</li>
+                    <li>AI活用法の簡単レクチャー</li>
+                    <li>AI副業での最短マネタイズ法</li>
+                </ul>
+                <p class="font-bold text-lg mb-2 text-green-700">参加方法</p>
+                <p class="text-xl font-bold text-center">
+                    <span class="bg-green-100 p-2 rounded">LINEメッセージで「レクチャー希望」と送信</span>
+                </p>
+                <p class="mt-4 text-sm text-center">僕が参加者一人ひとり向き合い個別に対応します</p>
+            </div>
+
+            <p class="text-xl md:text-2xl font-semibold mb-8">
+                あなたが今、少しでも「このままじゃダメかも」と思ってるなら、<br>
+                それはチャンスです。<br>
+                本当にダメなときって、「変わりたい」とすら思えないものだから。
+            </p>
+            <p class="text-xl md:text-2xl font-bold mb-8">
+                今よりちょっと自由な時間<br>
+                家族と過ごす余裕<br>
+                働き方を“選べる”未来<br>
+            </p>
+            <p class="text-lg md:text-xl mb-8">
+                そういう幸せを手に入れるために、あなたは一歩踏み出すだけでいい。<br>
+                その一歩が、たけ式であれば嬉しいです。
+            </p>
+
+            <a href="https://lin.ee/wPd4GwL" target="_blank" rel="noopener noreferrer"
+               class="btn-line inline-flex items-center justify-center px-8 py-5 rounded-full text-2xl font-bold shadow-xl hover:scale-105 transform transition-all duration-300 animate-pulse-line">
+                <svg class="w-8 h-8 mr-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.824 14.316c-.22.02-.44.02-.66 0-.317-.03-.635-.06-.952-.09-.597-.059-1.194-.12-1.79-.18-.323-.03-.646-.06-.969-.09-.452-.03-.904-.06-1.356-.09-.436-.029-.87-.058-1.305-.087-.168-.008-.337-.017-.505-.025-.262-.01-.523-.02-.785-.02-.158 0-.317 0-.475 0-.12 0-.239 0-.359 0-.083 0-.166 0-.25 0-.172 0-.344-.002-.516-.005C6.035 15.617 5 13.923 5 12c0-2.316 1.488-4.27 3.55-4.717.185-.04.37-.08.555-.11.455-.07.91-.14 1.365-.21.284-.04.568-.08.852-.11.23-.03.46-.06.69-.09.19-.02.378-.04.567-.05.158-.009.317-.018.475-.027.085-.005.17-.01.255-.015.086-.005.172-.01.258-.014.2-.008.4-.015.6-.02.16-.004.32-.008.48-.012.35-.008.7-.015 1.05-.02.04-.002.08-.003.12-.005zm-1.895-.494a.5.5 0 01-.635.485c-2.483-.437-4.225-2.614-4.225-5.113 0-2.513 1.76-4.685 4.26-5.113a.5.5 0 01.485.635l-.26.853a.5.5 0 01-.635.485c-1.68-.295-2.855-1.72-2.855-3.395 0-1.695 1.192-3.136 2.895-3.415a.5.5 0 01.635.485l.26.853a.5.5.5 0 01-.485.635z"/>
+                </svg>
+                <span>LINEで無料レクチャーを予約！</span>
+            </a>
+        </section>
+    </main>
+
+    <script>
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const contentId = header.dataset.accordion;
+                    const content = document.getElementById(`content-${contentId}`);
+
+                    // Close all other accordions
+                    accordionHeaders.forEach(otherHeader => {
+                        const otherContentId = otherHeader.dataset.accordion;
+                        const otherContent = document.getElementById(`content-${otherContentId}`);
+                        if (otherHeader !== header && otherHeader.classList.contains('active')) {
+                            otherHeader.classList.remove('active');
+                            otherContent.style.maxHeight = 0;
+                        }
+                    });
+
+                    // Toggle clicked accordion
+                    header.classList.toggle('active');
+                    if (header.classList.contains('active')) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        content.style.maxHeight = 0;
+                    }
+                });
+            });
+
+            // Sticky LINE button functionality
+            const stickyLineBtn = document.getElementById('stickyLineBtn');
+            // Ensure stickyLineBtn exists before trying to get its style or offsetHeight
+            if (stickyLineBtn) {
+                const heroSectionHeight = document.querySelector('header').offsetHeight; // Height of the initial header/hero section
+
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > heroSectionHeight / 2) { // Show after scrolling past half of hero section
+                        stickyLineBtn.style.display = 'flex';
+                    } else {
+                        stickyLineBtn.style.display = 'none';
+                    }
+                });
+            } else {
+                console.warn('Sticky LINE button element not found.'); // Optional: log a warning
+            }
+        });
+    </script>
+</body>
+</html>
