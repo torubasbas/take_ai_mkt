@@ -5,6 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI副業｜2025年 本当に稼げるロードマップ</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom styles for Accordion */
+    .accordion-header {
+      @apply flex justify-between items-center bg-sky-100 text-sky-800 p-4 font-bold cursor-pointer transition-all duration-300;
+      @apply hover:bg-sky-200;
+      /* Adjust padding for accordion headers in mb-6 accordion containers */
+      border-radius: 0.75rem 0.75rem 0 0; /* rounded-xl on top */
+    }
+
+    .accordion-header:not(.active) {
+        border-radius: 0.75rem; /* rounded-xl on all sides when closed */
+    }
+
+    .accordion-header.active {
+      @apply rounded-b-none;
+    }
+
+    .accordion-header svg {
+      @apply transition-transform duration-300;
+    }
+
+    .accordion-header.active svg {
+      @apply rotate-180;
+    }
+
+    .accordion-content {
+      @apply max-h-0 overflow-hidden transition-all duration-500 px-4 pt-0 pb-4 bg-white;
+      /* Add padding for content when open */
+      /* border-radius: 0 0 0.75rem 0.75rem; /* rounded-xl on bottom */
+    }
+
+    /* Animation for the CTA button */
+    @keyframes pulse-line {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); /* emerald-500 */
+      }
+      50% {
+        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+      }
+    }
+    .animate-pulse-line {
+      animation: pulse-line 2s infinite;
+    }
+  </style>
 </head>
 <body class="bg-sky-50 text-gray-800">
   <!-- Sticky CTA -->
@@ -18,7 +62,7 @@
   <!-- HERO -->
   <header class="bg-gradient-to-br from-sky-300 to-sky-500 text-white pb-20 pt-14 rounded-b-3xl shadow-md relative">
     <div class="max-w-screen-sm mx-auto px-4 text-center">
-      <img src="/img/profile.jpg" alt="プロフィール画像" class="w-24 h-24 rounded-full border-4 border-white mx-auto mb-4 object-cover" />
+      <img src="https://via.placeholder.com/100" alt="プロフィール画像" class="w-24 h-24 rounded-full border-4 border-white mx-auto mb-4 object-cover" />
       <h1 class="text-3xl font-extrabold leading-tight mb-4">
         2025年版<br />本当に稼げる <span class="whitespace-nowrap">AI副業術</span>
       </h1>
@@ -52,15 +96,15 @@
       <h2 class="sr-only">このAI副業が選ばれる理由</h2>
       <div class="grid grid-cols-3 gap-4 text-center">
         <div>
-          <img src="/img/icon-easy.svg" alt="スマホ完結" class="mx-auto mb-2 w-10 h-10" />
+          <img src="https://via.placeholder.com/40" alt="スマホ完結" class="mx-auto mb-2 w-10 h-10" />
           <p class="text-sm font-semibold">スマホ完結</p>
         </div>
         <div>
-          <img src="/img/icon-profit.svg" alt="利益" class="mx-auto mb-2 w-10 h-10" />
+          <img src="https://via.placeholder.com/40" alt="利益" class="mx-auto mb-2 w-10 h-10" />
           <p class="text-sm font-semibold">月5→30万可</p>
         </div>
         <div>
-          <img src="/img/icon-auto.svg" alt="自動化" class="mx-auto mb-2 w-10 h-10" />
+          <img src="https://via.placeholder.com/40" alt="自動化" class="mx-auto mb-2 w-10 h-10" />
           <p class="text-sm font-semibold">仕組み化OK</p>
         </div>
       </div>
@@ -86,10 +130,10 @@
       <h3 class="text-2xl font-bold text-center mb-6 text-blue-800">
         【放置OK】投稿が自販機になるAIショート動画副業とは？
       </h3>
-      <div class="bg-green-50 p-6 rounded-xl shadow-md border-l-4 border-green-500">
+      <div class="bg-sky-50 p-6 rounded-xl shadow-md border-l-4 border-sky-500">
         <p class="mb-4 text-lg">
           私がこのページで紹介する副業の3つのうち2つは、<br>
-          <span class="font-bold text-green-700">「AI × ショート動画」</span>を活用したモデルです。
+          <span class="font-bold text-sky-700">「AI × ショート動画」</span>を活用したモデルです。
         </p>
         <p class="mb-4">このモデルは、一度作れば“資産”として働き続ける、まるで自動販売機のようなビジネスです。</p>
         <div class="bg-white p-4 rounded-lg shadow-inner mb-6">
@@ -100,7 +144,7 @@
             <li>視聴・保存・フォローからLINE誘導 or アフィ誘導で収益化</li>
           </ol>
         </div>
-        <ul class="space-y-3 mb-6 text-lg font-semibold text-green-700">
+        <ul class="space-y-3 mb-6 text-lg font-semibold text-sky-700">
           <li class="flex items-center">
             <span class="text-yellow-500 mr-2 text-2xl">🔁</span>
             1日投稿すれば、翌日は投稿なしでも再生回る
@@ -146,22 +190,26 @@
                     <p class="mb-4">
                         アフィリエイトは「もう稼げない」と思われがちですが、それは完全な勘違いです。実は今アフィに取り組んでる人の9割以上がうまくいっていません。
                     </p>
-                    <p class="font-bold text-red-600 mb-2">なぜなら──</p>
-                    <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
-                        <li>SNSで拡散されてるノウハウが“薄くて抽象的”すぎる</li>
-                        <li>正しい導線や心理導入がわかっていない</li>
-                        <li>自分の投稿が「誰に」「何を」届けてるかすら理解していない</li>
-                    </ul>
+                    <div class="bg-red-50 p-4 rounded-lg shadow-inner mb-4">
+                        <p class="font-bold text-red-700 mb-2">なぜなら──</p>
+                        <ul class="list-disc list-inside space-y-1 pl-4">
+                            <li>SNSで拡散されてるノウハウが“薄くて抽象的”すぎる</li>
+                            <li>正しい導線や心理導入がわかっていない</li>
+                            <li>自分の投稿が「誰に」「何を」届けてるかすら理解していない</li>
+                        </ul>
+                    </div>
                     <p class="mb-4">
                         つまり、みんな参戦はしてるけど、ちゃんと戦えていない状態なんです。<br>
-                        だからこそ、今が<span class="font-bold text-green-700">ブルーオーシャン</span>なんです！
+                        だからこそ、今が<span class="font-bold text-emerald-700">ブルーオーシャン</span>なんです！
                     </p>
                     <p class="mb-4">
                         再現性あるやり方をちゃんと学んで、<span class="font-bold text-blue-700">「誰に」「何を」「どのタイミングで」</span>見せれば人は動くのかを理解し、仕組み化できれば、競合はめちゃくちゃ少ない。
                     </p>
-                    <p class="mb-4 font-bold text-lg">
-                        AIやショート動画、LINE誘導を組み合わせれば、正直毎月安定して<span class="text-orange-600">30万は通過点。</span>しかも一度仕組み化すれば、<span class="text-red-700">“あなたが寝てる間”にさえ収益が発生</span>するようになります。
-                    </p>
+                    <div class="bg-yellow-50 p-4 rounded-lg shadow-inner mb-4">
+                        <p class="mb-4 font-bold text-lg text-orange-600">
+                            AIやショート動画、LINE誘導を組み合わせれば、正直毎月安定して<span class="text-orange-600">30万は通過点。</span>しかも一度仕組み化すれば、<span class="text-red-700">“あなたが寝てる間”にさえ収益が発生</span>するようになります。
+                        </p>
+                    </div>
                     <h4 class="font-bold text-blue-700 mb-2">例えば、アダルトアフィリエイト</h4>
                     <p class="mb-4">
                         “ちょっと寂しがり屋な女の子”のアカウントを演じて、マッチングアプリや出会い系を紹介していく副業です。<br>
@@ -171,14 +219,15 @@
                     <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
                         <li>アドネックス（大手。案件多め）</li>
                         <li>マチアフィ（マッチング系に強い）</li>
-                        <li>アポロ（特単出やすく、単価高め）</li>
+                        <li>アポロ（特単出やすく、単価高め）
+                            <span class="text-xs text-gray-500">(例：ハッピーメール登録 → 1件1,100円、PCMAXダウンロード → 1,200円、ワクワクメール登録 → 900円 など)</span>
+                        </li>
                     </ul>
-                    <p class="mb-4">
-                        例：ハッピーメール登録 → 1件1,100円、PCMAXダウンロード → 1,200円、ワクワクメール登録 → 900円 など
-                    </p>
-                    <p class="mb-4 font-bold text-lg">
-                        リアルな話、1日2〜3投稿＋プロフリンク設置だけで、<span class="text-orange-600">月5〜10万は普通に狙えます。</span>「登録だけで報酬発生」という超ゆるい案件もあるので、初心者でも始めやすいです。
-                    </p>
+                    <div class="bg-emerald-50 p-4 rounded-lg shadow-inner mb-4">
+                        <p class="mb-4 font-bold text-lg text-emerald-700">
+                            リアルな話、1日2〜3投稿＋プロフリンク設置だけで、<span class="text-orange-600">月5〜10万は普通に狙えます。</span>「登録だけで報酬発生」という超ゆるい案件もあるので、初心者でも始めやすいです。
+                        </p>
+                    </div>
                     <p class="mb-4 text-center text-lg">
                         アフィリエイトは「SNSアカウント＋画像＋一言＋リンク」これだけ。<br>
                         それが“人の感情”に刺されば、自動で収益が発生し続ける仕組みになります。<br>
@@ -196,7 +245,7 @@
                 <div class="accordion-content" id="content-2">
                     <p class="mb-4">
                         これは一言でいうと、TikTokやYouTube Shortsに雑学・占い・AI猫ショート動画を投稿して、バズらせて稼ぐ副業です。
-                        しかもただバズらせて終わりじゃなく、<span class="font-bold text-green-700">ちゃんと“収益が発生する導線”まで繋げられます。</span>
+                        しかもただバズらせて終わりじゃなく、<span class="font-bold text-emerald-700">ちゃんと“収益が発生する導線”まで繋げられます。</span>
                     </p>
                     <div class="bg-blue-50 p-4 rounded-lg shadow-inner mb-4">
                         <p class="font-bold mb-2">ざっくり流れはこんな感じ👇</p>
@@ -207,16 +256,18 @@
                             <li>バズったら→プロフのリンクからLINEオプトインやアフィ案件を紹介して収益化</li>
                         </ol>
                     </div>
-                    <p class="font-bold text-blue-700 mb-2">💡なんでこれが強いの？</p>
+                    <h4 class="font-bold text-blue-700 mb-2">💡なんでこれが強いの？</h4>
                     <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
                         <li>TikTokはバズれば勝手に再生され続ける。</li>
                         <li>LINE登録（オプトイン）は「全再生の0.2％が登録する」という有名データがある。
                             <br>（例：5万再生されたら→100人がLINE登録してくれる計算。1件300円〜1500円の報酬がポンポン入る。）</li>
                     </ul>
-                    <p class="mb-4 text-lg font-bold">
-                        僕の生徒さんはTikTokのみの発信で先月は<span class="text-red-600">”1186人”のLINE登録</span>を獲得！<br>
-                        一件500円の案件でも<span class="text-red-600">59万円の収益</span>を出しています。
-                    </p>
+                    <div class="bg-red-50 p-4 rounded-lg shadow-inner mb-4">
+                        <p class="mb-4 text-lg font-bold text-red-700">
+                            僕の生徒さんはTikTokのみの発信で先月は<span class="text-red-600">”1186人”のLINE登録</span>を獲得！<br>
+                            一件500円の案件でも<span class="text-red-600">59万円の収益</span>を出しています。
+                        </p>
+                    </div>
                     <h4 class="font-bold text-blue-700 mb-2">📈 稼げる導線はこんな感じ</h4>
                     <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
                         <li>LINEオプトイン案件</li>
@@ -226,17 +277,20 @@
                     <p class="mb-4">
                         しかもTikTokのいいところは、バズるのがめっちゃ早い、顔出し不要、動画はテンプレ化できるから毎日投稿も余裕。一回作った動画が“自動販売機”になる感覚です。
                     </p>
-                    <p class="mb-4 font-bold text-green-700">この副業のすごいところは…<br>「スモールビジネス」になるということ。</p>
-                    <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
-                        <li>自動化できる（スケジュール投稿、AIで素材生成）</li>
-                        <li>外注化できる（動画編集、ナレーション任せられる）</li>
-                        <li>M&Aもできる（フォロワー数次第でアカ売却可能）</li>
-                    </ul>
+                    <div class="bg-emerald-50 p-4 rounded-lg shadow-inner mb-4">
+                        <p class="mb-4 font-bold text-emerald-700">この副業のすごいところは…<br>「スモールビジネス」になるということ。</p>
+                        <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
+                            <li>自動化できる（スケジュール投稿、AIで素材生成）</li>
+                            <li>外注化できる（動画編集、ナレーション任せられる）</li>
+                            <li>M&Aもできる（フォロワー数次第でアカ売却可能）</li>
+                        </ul>
+                    </div>
                     <p class="text-lg text-center font-bold">
                         この時点で「え、やってみたいかも」って思った人、正解です。<br>
                         まだまだブルーオーシャン。今のうちに仕組み作ったもん勝ちです。
                     </p>
                 </div>
+            </div>
                           <!-- Accordion 3: アカウント売却（M&A） -->
             <div class="bg-white rounded-xl shadow-md mb-6 overflow-hidden">
                 <div class="accordion-header" data-accordion="3">
@@ -267,18 +321,22 @@
                         <li>ラッコM&Aがベター</li>
                         <li>SNS内で売買グループに参加して直接取引</li>
                     </ul>
-                    <p class="mb-4 font-bold text-lg">
-                        価格帯は、フォロワー3,000人〜5,000人くらいで<span class="text-orange-600">10〜30万円</span>、1万人以上だと<span class="text-red-600">200万円〜500万円</span>で売れることもあります。さらに希望者には“アカウント育成＋売却サポート”もできます。
-                    </p>
+                    <div class="bg-red-50 p-4 rounded-lg shadow-inner mb-4">
+                        <p class="mb-4 font-bold text-lg text-red-700">
+                            価格帯は、フォロワー3,000人〜5,000人くらいで<span class="text-orange-600">10〜30万円</span>、1万人以上だと<span class="text-red-600">200万円〜500万円</span>で売れることもあります。さらに希望者には“アカウント育成＋売却サポート”もできます。
+                        </p>
+                    </div>
                     <p class="mb-4 text-center text-lg">
                         運用の感覚は“農業”に近いかもしれません。1アカウントを種から育てて、一定のフォロワーや世界観が整ったら“収穫”＝売却。
                     </p>
-                    <p class="mb-4">しかもAIを使えば、</p>
-                    <ul class="list-disc list-inside space-y-1 mb-4 pl-4 font-semibold text-green-700">
-                        <li>顔出し不要</li>
-                        <li>自分の時間をほとんど使わずに作業できる</li>
-                        <li>一人で複数アカウント同時進行もOK</li>
-                    </ul>
+                    <div class="bg-emerald-50 p-4 rounded-lg shadow-inner mb-4">
+                        <p class="mb-4">しかもAIを使えば、</p>
+                        <ul class="list-disc list-inside space-y-1 mb-4 pl-4 font-semibold text-emerald-700">
+                            <li>顔出し不要</li>
+                            <li>自分の時間をほとんど使わずに作業できる</li>
+                            <li>一人で複数アカウント同時進行もOK</li>
+                        </ul>
+                    </div>
                     <p class="text-lg text-center font-bold">
                         収益化も売却もどっちも狙えるし、「自分がやらなくても回る資産」を持てる感覚になります。<br>
                         まさに個人でできる<span class="text-blue-700">“デジタル農業”</span>です🌱
@@ -302,7 +360,7 @@
         <hr class="border-t-2 border-gray-200 my-8">
 
         <!-- Section: 無料電話レクチャーCTA -->
-        <section class="gradient-bg text-white py-10 px-4 rounded-xl shadow-lg text-center mb-12">
+        <section class="bg-gradient-to-br from-sky-500 to-blue-700 text-white py-10 px-4 rounded-xl shadow-lg text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-extrabold mb-6">
                 あなただけの<br class="md:hidden">副業ロードマップを<br class="md:hidden">作成します
             </h2>
@@ -337,9 +395,9 @@
                     <li>AI活用法の簡単レクチャー</li>
                     <li>AI副業での最短マネタイズ法</li>
                 </ul>
-                <p class="font-bold text-lg mb-2 text-green-700">参加方法</p>
+                <p class="font-bold text-lg mb-2 text-emerald-700">参加方法</p>
                 <p class="text-xl font-bold text-center">
-                    <span class="bg-green-100 p-2 rounded">LINEメッセージで<br>「レクチャー希望」と送信</span>
+                    <span class="bg-emerald-100 text-emerald-800 p-3 rounded-lg inline-block">LINEメッセージで<br>「レクチャー希望」と送信</span>
                 </p>
                 <p class="mt-4 text-sm text-center">僕が参加者一人ひとり向き合い個別に対応します</p>
             </div>
@@ -360,7 +418,7 @@
             </p>
 
             <a href="https://lin.ee/wPd4GwL" target="_blank" rel="noopener noreferrer"
-               class="btn-line inline-flex items-center justify-center px-8 py-5 rounded-full text-2xl font-bold shadow-xl hover:scale-105 transform transition-all duration-300 animate-pulse-line">
+               class="inline-flex items-center justify-center px-8 py-5 rounded-full text-2xl font-bold shadow-xl hover:scale-105 transform transition-all duration-300 animate-pulse-line bg-emerald-500 hover:bg-emerald-600 text-white">
                 <span>LINEで無料レクチャーを予約！</span>
             </a>
         </section>
@@ -376,14 +434,18 @@
                 header.addEventListener('click', () => {
                     const id = header.dataset.accordion;
                     const content = document.getElementById(`content-${id}`);
+
+                    // Close other open accordions
                     accordionHeaders.forEach(h => {
                         const cid = h.dataset.accordion;
                         const ccontent = document.getElementById(`content-${cid}`);
-                        if (h !== header) {
+                        if (h !== header && h.classList.contains('active')) {
                             h.classList.remove('active');
                             ccontent.style.maxHeight = 0;
                         }
                     });
+
+                    // Toggle current accordion
                     header.classList.toggle('active');
                     if (header.classList.contains('active')) {
                         content.style.maxHeight = content.scrollHeight + 'px';
@@ -395,7 +457,8 @@
 
             const sticky = document.getElementById('stickyCTA');
             window.addEventListener('scroll', () => {
-                const threshold = window.innerHeight * 0.3;
+                // Adjust this threshold if you want the CTA to appear earlier/later
+                const threshold = window.innerHeight * 0.3; 
                 sticky.style.opacity = window.scrollY > threshold ? '1' : '0';
             });
         });
