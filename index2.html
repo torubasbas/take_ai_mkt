@@ -8,32 +8,34 @@
   <style>
     /* Custom styles for Accordion */
     .accordion-header {
-      @apply flex justify-between items-center bg-sky-100 text-sky-800 p-4 font-bold cursor-pointer transition-all duration-300;
-      @apply hover:bg-sky-200;
-      /* Adjust padding for accordion headers in mb-6 accordion containers */
-      border-radius: 0.75rem 0.75rem 0 0; /* rounded-xl on top */
+      /* Base styles: flex, alignment, background, text, padding, font, cursor, transition */
+      @apply flex justify-between items-center bg-sky-200 text-sky-900 p-4 font-bold cursor-pointer transition-all duration-300;
+      /* Visual enhancements: rounded corners, shadow, hover effect */
+      @apply rounded-xl shadow-md hover:bg-sky-300; /* Apply rounded-xl and shadow here */
     }
 
-    .accordion-header:not(.active) {
-        border-radius: 0.75rem; /* rounded-xl on all sides when closed */
-    }
-
+    /* Style for the header when the accordion is active (open) */
     .accordion-header.active {
+      /* Keep top corners rounded, but make bottom straight to connect with content */
       @apply rounded-b-none;
     }
 
+    /* Arrow icon transition */
     .accordion-header svg {
       @apply transition-transform duration-300;
     }
 
+    /* Arrow icon rotation when active */
     .accordion-header.active svg {
       @apply rotate-180;
     }
 
+    /* Accordion content area */
     .accordion-content {
-      @apply max-h-0 overflow-hidden transition-all duration-500 px-4 pt-0 pb-4 bg-white;
-      /* Add padding for content when open */
-      /* border-radius: 0 0 0.75rem 0.75rem; /* rounded-xl on bottom */
+      /* Base styles: hidden by default, smooth transition, padding */
+      @apply max-h-0 overflow-hidden transition-all duration-500 px-6 pt-0 pb-4 bg-white; /* Increased horizontal padding */
+      /* Visual enhancements: rounded bottom corners, shadow to match header */
+      @apply rounded-b-xl shadow-md; /* Apply rounded-b-xl and shadow here */
     }
 
     /* Animation for the CTA button */
@@ -136,7 +138,7 @@
           <span class="font-bold text-sky-700">「AI × ショート動画」</span>を活用したモデルです。
         </p>
         <p class="mb-4">このモデルは、一度作れば“資産”として働き続ける、まるで自動販売機のようなビジネスです。</p>
-        <div class="bg-white p-4 rounded-lg shadow-inner mb-6">
+        <div class="bg-white p-4 rounded-lg shadow-md mb-6"> <!-- Changed shadow-inner to shadow-md -->
           <p class="font-bold mb-2">ざっくり流れはこんな感じ👇</p>
           <ol class="list-decimal list-inside space-y-1">
             <li>AIで半自動生成できる動画（雑学、占い系、動物系）を作る</li>
@@ -162,7 +164,7 @@
           本当に稼げるのか？再現性はある？<br>
           結論から言うと、<span class="font-bold text-orange-600">あります。</span>
         </p>
-        <div class="bg-white p-4 rounded-lg shadow-inner">
+        <div class="bg-white p-4 rounded-lg shadow-md"> <!-- Changed shadow-inner to shadow-md -->
           <p class="font-bold mb-2">なぜなら、次の3条件を満たしているから👇</p>
           <ul class="list-disc list-inside space-y-1">
             <li><span class="font-bold">需要がある：</span>「癒し」「ストレス解消」「恋の悩み」「将来の不安」など、人の感情に寄り添えるコンテンツは、エンタメより遥かに刺さるんです。</li>
@@ -181,16 +183,16 @@
     <section class="mt-12">
       <h2 class="text-xl font-bold text-center mb-6 text-sky-700">3ステップで収益化</h2>
                   <!-- Accordion 1: アフィリエイト -->
-            <div class="bg-white rounded-xl shadow-md mb-6 overflow-hidden">
+            <div class="bg-white rounded-xl shadow-lg mb-6 overflow-hidden"> <!-- Added shadow-lg for better visual separation -->
                 <div class="accordion-header" data-accordion="1">
-                    <span class="text-xl">❶ アフィリエイト <span class="text-sm ml-2 text-gray-500">(タップで詳細)</span></span>
+                    <span class="text-xl">❶ アフィリエイト <span class="text-sm ml-2 text-gray-600">(タップで詳細)</span></span> <!-- Changed text-gray-500 to text-gray-600 for better contrast -->
                     <svg class="w-6 h-6 transform rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
                 <div class="accordion-content" id="content-1">
                     <p class="mb-4">
                         アフィリエイトは「もう稼げない」と思われがちですが、それは完全な勘違いです。実は今アフィに取り組んでる人の9割以上がうまくいっていません。
                     </p>
-                    <div class="bg-red-50 p-4 rounded-lg shadow-inner mb-4">
+                    <div class="bg-red-50 p-4 rounded-lg shadow-md mb-4"> <!-- Changed shadow-inner to shadow-md -->
                         <p class="font-bold text-red-700 mb-2">なぜなら──</p>
                         <ul class="list-disc list-inside space-y-1 pl-4">
                             <li>SNSで拡散されてるノウハウが“薄くて抽象的”すぎる</li>
@@ -205,7 +207,7 @@
                     <p class="mb-4">
                         再現性あるやり方をちゃんと学んで、<span class="font-bold text-blue-700">「誰に」「何を」「どのタイミングで」</span>見せれば人は動くのかを理解し、仕組み化できれば、競合はめちゃくちゃ少ない。
                     </p>
-                    <div class="bg-yellow-50 p-4 rounded-lg shadow-inner mb-4">
+                    <div class="bg-yellow-50 p-4 rounded-lg shadow-md mb-4"> <!-- Changed shadow-inner to shadow-md -->
                         <p class="mb-4 font-bold text-lg text-orange-600">
                             AIやショート動画、LINE誘導を組み合わせれば、正直毎月安定して<span class="text-orange-600">30万は通過点。</span>しかも一度仕組み化すれば、<span class="text-red-700">“あなたが寝てる間”にさえ収益が発生</span>するようになります。
                         </p>
@@ -223,7 +225,7 @@
                             <span class="text-xs text-gray-500">(例：ハッピーメール登録 → 1件1,100円、PCMAXダウンロード → 1,200円、ワクワクメール登録 → 900円 など)</span>
                         </li>
                     </ul>
-                    <div class="bg-emerald-50 p-4 rounded-lg shadow-inner mb-4">
+                    <div class="bg-emerald-50 p-4 rounded-lg shadow-md mb-4"> <!-- Changed shadow-inner to shadow-md -->
                         <p class="mb-4 font-bold text-lg text-emerald-700">
                             リアルな話、1日2〜3投稿＋プロフリンク設置だけで、<span class="text-orange-600">月5〜10万は普通に狙えます。</span>「登録だけで報酬発生」という超ゆるい案件もあるので、初心者でも始めやすいです。
                         </p>
@@ -237,9 +239,9 @@
             </div>
 
             <!-- Accordion 2: AI×ショート動画で稼ぐ -->
-            <div class="bg-white rounded-xl shadow-md mb-6 overflow-hidden">
+            <div class="bg-white rounded-xl shadow-lg mb-6 overflow-hidden"> <!-- Added shadow-lg for better visual separation -->
                 <div class="accordion-header" data-accordion="2">
-                    <span class="text-xl">❷ AI×ショート動画で稼ぐ <span class="text-sm ml-2 text-gray-500">(タップで詳細)</span></span>
+                    <span class="text-xl">❷ AI×ショート動画で稼ぐ <span class="text-sm ml-2 text-gray-600">(タップで詳細)</span></span>
                     <svg class="w-6 h-6 transform rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
                 <div class="accordion-content" id="content-2">
@@ -247,7 +249,7 @@
                         これは一言でいうと、TikTokやYouTube Shortsに雑学・占い・AI猫ショート動画を投稿して、バズらせて稼ぐ副業です。
                         しかもただバズらせて終わりじゃなく、<span class="font-bold text-emerald-700">ちゃんと“収益が発生する導線”まで繋げられます。</span>
                     </p>
-                    <div class="bg-blue-50 p-4 rounded-lg shadow-inner mb-4">
+                    <div class="bg-blue-50 p-4 rounded-lg shadow-md mb-4"> <!-- Changed shadow-inner to shadow-md -->
                         <p class="font-bold mb-2">ざっくり流れはこんな感じ👇</p>
                         <ol class="list-decimal list-inside space-y-1">
                             <li>GPTsで動画台本を作る</li>
@@ -262,7 +264,7 @@
                         <li>LINE登録（オプトイン）は「全再生の0.2％が登録する」という有名データがある。
                             <br>（例：5万再生されたら→100人がLINE登録してくれる計算。1件300円〜1500円の報酬がポンポン入る。）</li>
                     </ul>
-                    <div class="bg-red-50 p-4 rounded-lg shadow-inner mb-4">
+                    <div class="bg-red-50 p-4 rounded-lg shadow-md mb-4"> <!-- Changed shadow-inner to shadow-md -->
                         <p class="mb-4 text-lg font-bold text-red-700">
                             僕の生徒さんはTikTokのみの発信で先月は<span class="text-red-600">”1186人”のLINE登録</span>を獲得！<br>
                             一件500円の案件でも<span class="text-red-600">59万円の収益</span>を出しています。
@@ -277,7 +279,7 @@
                     <p class="mb-4">
                         しかもTikTokのいいところは、バズるのがめっちゃ早い、顔出し不要、動画はテンプレ化できるから毎日投稿も余裕。一回作った動画が“自動販売機”になる感覚です。
                     </p>
-                    <div class="bg-emerald-50 p-4 rounded-lg shadow-inner mb-4">
+                    <div class="bg-emerald-50 p-4 rounded-lg shadow-md mb-4"> <!-- Changed shadow-inner to shadow-md -->
                         <p class="mb-4 font-bold text-emerald-700">この副業のすごいところは…<br>「スモールビジネス」になるということ。</p>
                         <ul class="list-disc list-inside space-y-1 mb-4 pl-4">
                             <li>自動化できる（スケジュール投稿、AIで素材生成）</li>
@@ -292,9 +294,9 @@
                 </div>
             </div>
                           <!-- Accordion 3: アカウント売却（M&A） -->
-            <div class="bg-white rounded-xl shadow-md mb-6 overflow-hidden">
+            <div class="bg-white rounded-xl shadow-lg mb-6 overflow-hidden"> <!-- Added shadow-lg for better visual separation -->
                 <div class="accordion-header" data-accordion="3">
-                    <span class="text-xl">❸ アカウント売却（M&A） <span class="text-sm ml-2 text-gray-500">(タップで詳細)</span></span>
+                    <span class="text-xl">❸ アカウント売却（M&A） <span class="text-sm ml-2 text-gray-600">(タップで詳細)</span></span>
                     <svg class="w-6 h-6 transform rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
                 <div class="accordion-content" id="content-3">
@@ -321,7 +323,7 @@
                         <li>ラッコM&Aがベター</li>
                         <li>SNS内で売買グループに参加して直接取引</li>
                     </ul>
-                    <div class="bg-red-50 p-4 rounded-lg shadow-inner mb-4">
+                    <div class="bg-red-50 p-4 rounded-lg shadow-md mb-4"> <!-- Changed shadow-inner to shadow-md -->
                         <p class="mb-4 font-bold text-lg text-red-700">
                             価格帯は、フォロワー3,000人〜5,000人くらいで<span class="text-orange-600">10〜30万円</span>、1万人以上だと<span class="text-red-600">200万円〜500万円</span>で売れることもあります。さらに希望者には“アカウント育成＋売却サポート”もできます。
                         </p>
@@ -329,7 +331,7 @@
                     <p class="mb-4 text-center text-lg">
                         運用の感覚は“農業”に近いかもしれません。1アカウントを種から育てて、一定のフォロワーや世界観が整ったら“収穫”＝売却。
                     </p>
-                    <div class="bg-emerald-50 p-4 rounded-lg shadow-inner mb-4">
+                    <div class="bg-emerald-50 p-4 rounded-lg shadow-md mb-4"> <!-- Changed shadow-inner to shadow-md -->
                         <p class="mb-4">しかもAIを使えば、</p>
                         <ul class="list-disc list-inside space-y-1 mb-4 pl-4 font-semibold text-emerald-700">
                             <li>顔出し不要</li>
