@@ -50,6 +50,37 @@
     .animate-pulse-line {
       animation: pulse-line 2s infinite;
     }
+    /* Custom styles for Accordion */
+    .accordion-header {
+      /* Base styles: flex, alignment, background, text, padding, font, cursor, transition */
+      @apply flex justify-between items-center bg-sky-200 text-sky-900 p-4 font-bold cursor-pointer transition-all duration-300;
+      /* Visual enhancements: rounded corners, hover effect - shadow-md removed */
+      @apply rounded-xl hover:bg-sky-300; /* Apply rounded-xl and hover here, shadow removed */
+    }
+
+    /* Style for the header when the accordion is active (open) */
+    .accordion-header.active {
+      /* Keep top corners rounded, but make bottom straight to connect with content */
+      @apply rounded-b-none;
+    }
+
+    /* Arrow icon transition */
+    .accordion-header svg {
+      @apply transition-transform duration-300;
+    }
+
+    /* Arrow icon rotation when active */
+    .accordion-header.active svg {
+      @apply rotate-180;
+    }
+
+    /* Accordion content area */
+    .accordion-content {
+      /* Base styles: hidden by default, smooth transition, padding */
+      @apply max-h-0 overflow-hidden transition-all duration-500 px-6 pt-0 pb-4 bg-white; /* Increased horizontal padding */
+      /* Visual enhancements: rounded bottom corners - shadow-md removed */
+      @apply rounded-b-xl; /* Apply rounded-b-xl here, shadow removed */
+    }
   </style>
 </head>
 <body class="bg-sky-50 text-gray-800">
