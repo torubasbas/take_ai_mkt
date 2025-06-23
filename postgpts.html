@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「刺さる言葉」を自動でつくるGPTsスライド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            overscroll-behavior-y: none; /* Prevents pull-to-refresh */
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 420px; /* iPhone Pro Max width is around 428-430px */
+            aspect-ratio: 1 / 1;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        .slide {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2.5rem; /* 40px */
+            text-align: center;
+            background-color: white;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .slide.active {
+            display: flex;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        .nav-button:disabled {
+            background-color: rgba(0, 0, 0, 0.1);
+            cursor: not-allowed;
+        }
+        #prevBtn { left: 10px; }
+        #nextBtn { right: 10px; }
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 6px;
+            background-color: #007bff;
+            transition: width 0.3s ease-in-out;
+        }
+        .slide-title {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+         .slide-title-sm {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        .slide-text {
+            font-size: 1rem; /* 16px */
+            line-height: 1.8;
+        }
+        .slide-text ul {
+            text-align: left;
+            margin-top: 1rem;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .slide-text li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-start;
+        }
+         .slide-text li svg {
+            flex-shrink: 0;
+            margin-right: 0.5rem;
+            margin-top: 4px;
+        }
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid #eee;
+        }
+        .cta-button {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 2rem;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 9999px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .cta-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+         .line-button {
+            background-color: #06C755;
+        }
+         .line-button:hover {
+            background-color: #05a546;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <main class="relative">
+        <div id="slide-container" class="slide-container rounded-lg">
+            
+            <!-- スライド 1: タイトル -->
+            <div class="slide active">
+                <div class="visual-element mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#007bff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                </div>
+                <h1 class="text-2xl md:text-3xl font-bold leading-tight">「刺さる言葉」を<br>自動でつくるGPT、登場。</h1>
+                <p class="mt-4 text-gray-600">＼ 平凡な文章が、影響力ある言葉に変わる ／</p>
+            </div>
+            
+            <!-- スライド 2: 目次 -->
+            <div class="slide">
+                <h2 class="slide-title">この資料の流れ</h2>
+                <div class="slide-text">
+                    <ul class="space-y-4">
+                        <li><span class="font-bold text-blue-600 mr-2">1. なぜ発信は伸び悩むのか？</li>
+                        <li><span class="font-bold text-blue-600 mr-2">2. 僕も同じ場所から始まった</li>
+                        <li><span class="font-bold text-blue-600 mr-2">3. 言葉を自動で強くする技術</li>
+                        <li><span class="font-bold text-blue-600 mr-2">4. あなたの言葉で、未来を変える</li>
+                    </ul>
+                </div>
+                 <p class="text-xs text-gray-400 mt-6">SNSで影響力を持ちたいあなたへ、<br>具体的な一歩をお伝えします。</p>
+            </div>
+            
+            <!-- 第1章: 問題提起 -->
+            <div class="slide">
+                <h2 class="slide-title">「一生懸命つくったのに、<br>なぜか反応が薄い…」</h2>
+                <div class="visual-element my-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </div>
+                <p class="slide-text">SNSでの発信、こんな経験ありませんか？</p>
+            </div>
+
+            <div class="slide">
+                <p class="text-sm text-blue-500 font-bold mb-2">第1章: 問題提起</p>
+                <h2 class="slide-title-sm">伝えたいことはあるのに、<br>言葉が響かないもどかしさ。</h2>
+                <p class="slide-text">
+                    有益な情報を発信しているつもりでも、「いいね」も「フォロワー」も増えない。
+                    <br><br>
+                    影響力のある人と自分の間にある「見えない壁」に、 답답함を感じているかもしれません。
+                </p>
+            </div>
+            
+            <div class="slide">
+                <h2 class="slide-title">その差は、<br>「言葉の強さ」にあります。</h2>
+                 <div class="visual-element my-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-500"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                </div>
+                <p class="slide-text">
+                    内容が良くても、読者の心に刺さる「表現」がなければ、情報は簡単にスルーされてしまうんです。
+                </p>
+            </div>
+
+            <!-- 第2章: 共感 -->
+             <div class="slide">
+                <h2 class="slide-title">その気持ち、<br>痛いほどわかります。</h2>
+                 <img src="https://pbs.twimg.com/profile_images/1936453171800391680/D7QmdAH0_400x400.jpg" alt="くろむ氏のプロフィール画像" class="profile-img" onerror="this.onerror=null;this.src='https://placehold.co/100x100/EFEFEF/AAAAAA&text=Profile';">
+                <p class="slide-text">
+                    何を隠そう、僕も昔はまったく同じ悩みを抱えていましたから。
+                </p>
+            </div>
+            
+            <div class="slide">
+                <h2 class="slide-title-sm">高卒で工場員だった僕が、<br>月収200万になれた理由。</h2>
+                <p class="slide-text">
+                    特別な才能や知識があったわけではありません。
+                    <br><br>
+                    ただ、副業でアフィリエイトを始めたことをきっかけに、人の心を動かす「言葉の力」を徹底的に研究したんです。
+                </p>
+            </div>
+            
+             <div class="slide">
+                <h2 class="slide-title">変わったのは<br>「言葉の使い方」だけ。</h2>
+                 <div class="visual-element my-4 flex space-x-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500 self-center"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+                </div>
+                <p class="slide-text">
+                   平凡な言葉を、人の心に響く言葉に変える。そのスキルが、僕の人生を大きく変えてくれました。
+                </p>
+            </div>
+
+            <!-- 第3章: 解決策 -->
+            <div class="slide">
+                <h2 class="slide-title">もし、そのスキルが<br>「自動で」手に入るとしたら？</h2>
+                 <div class="visual-element my-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                 </div>
+                <p class="slide-text">
+                    僕が5年間で培った「刺さる言葉」の作り方を、すべてAIに学習させました。
+                </p>
+            </div>
+
+            <div class="slide">
+                <h2 class="slide-title">それが、このGPT<br>「くろむポストライティング」</h2>
+                <p class="slide-text">
+                   あなたの伝えたいことを入力するだけで、人の心を動かす「バズる文章」に自動で変換してくれるツールです。
+                </p>
+                <a href="https://chatgpt.com/g/g-68580bbe32348191b6734b4cc228426e-kuromuhosutoraiteinku" target="_blank" class="cta-button">今すぐ試してみる</a>
+            </div>
+
+            <div class="slide">
+                <h2 class="slide-title-sm">このGPTで、できること</h2>
+                <div class="slide-text">
+                    <ul>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500"><polyline points="20 6 9 17 4 12"></polyline></svg>日常の投稿をバズる文章にリライト</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500"><polyline points="20 6 9 17 4 12"></polyline></svg>教育・気づき系の文章を「刺さる言葉」に</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500"><polyline points="20 6 9 17 4 12"></polyline></svg>強い言葉、感情的な構成で反応を最大化</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500"><polyline points="20 6 9 17 4 12"></polyline></svg>X（旧Twitter）に最適化された文章</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="slide">
+                <h2 class="slide-title-sm">こんな方にピッタリです</h2>
+                <div class="slide-text">
+                     <ul>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>SNSでの影響力を高めたい</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>自己啓発・ビジネス系で発信している</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>投稿が伸びずに悩んでいる</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>日常の気づきをもっと拡散したい</li>
+                    </ul>
+                </div>
+            </div>
+
+             <div class="slide">
+                <h2 class="slide-title-sm">使い方は、驚くほどシンプル</h2>
+                <div class="slide-text">
+                    <ol class="list-decimal text-left pl-5 space-y-4">
+                        <li><strong>文章をコピペ</strong><br><span class="text-sm text-gray-600">リライトしたい文章を入力するだけ。</span></li>
+                        <li><strong>そのまま使う</strong><br><span class="text-sm text-gray-600">AIが生成した「刺さる文章」をコピーして投稿。</span></li>
+                        <li><strong>さらに調整</strong><br><span class="text-sm text-gray-600">「別案ちょうだい」と言えば、違うパターンの提案も可能です。</span></li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="slide">
+                <h2 class="slide-title">なぜ、反応が取れるのか？</h2>
+                 <div class="visual-element my-4">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                 </div>
+                <p class="slide-text">
+                    このGPTは、読者の「感情」に直接アプローチする文章だけを生成するように設計されています。
+                </p>
+            </div>
+            
+             <div class="slide">
+                <h2 class="slide-title-sm">秘密は「心理トリガー」</h2>
+                <p class="slide-text">
+                    人の悩みの根源である「HARMの法則」に基づき、文章を構成。
+                    <br><br>
+                    さらに「上から目線＋断定口調」でAIっぽさを消し、強く人間味のある印象を与えます。だから、心に刺さるんです。
+                </p>
+            </div>
+
+            <!-- 第4章: 行動喚起 -->
+            <div class="slide">
+                <h2 class="slide-title">文章の印象で、<br>見える世界は変わる。</h2>
+                 <div class="visual-element my-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-500"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                 </div>
+                <p class="slide-text">
+                   今ある言葉を、読まれ、共感され、拡散される表現へ。その第一歩を、踏み出してみませんか？
+                </p>
+            </div>
+
+            <div class="slide">
+                <h2 class="slide-title">まずは無料で、<br>その威力を体験してください。</h2>
+                <p class="slide-text">
+                    一文入力するだけで、すべてが変わります。スマホでもそのまま使えますよ。
+                </p>
+                <a href="https://chatgpt.com/g/g-68580bbe32348191b6734b4cc228426e-kuromuhosutoraiteinku" target="_blank" class="cta-button">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-2"><polyline points="10 9 9 9 8 9 7 9 6 9 5 9"></polyline><path d="M4 15h2"></path><path d="M5 9a3 3 0 0 1 3-3h1a2 2 0 0 1 2 2 2 2 0 0 1 2-2h1a3 3 0 0 1 3 3v2a1 1 0 0 1-1 1h-1"></path><path d="M4 15v1a2 2 0 0 0 2 2h1"></path></svg>
+                    「くろむポストライティング」を試す
+                </a>
+            </div>
+            
+             <div class="slide">
+                <h2 class="slide-title">「やってみたいけど、<br>1人じゃ不安…」</h2>
+                <p class="slide-text">
+                    もし、そう感じているなら。
+                    <br><br>
+                    1人で悩んで時間を無駄にするくらいなら、1時間だけ僕にください。無料で「作戦会議」をしましょう。
+                </p>
+            </div>
+
+            <div class="slide">
+                <h2 class="slide-title-sm">あなただけの<br>収益化ロードマップを作成します</h2>
+                <p class="slide-text">
+                     "今のあなた"のレベルと目標に合わせて、最適なプランを僕がすべて設計します。あなたは、あとはやるだけ。
+                </p>
+                <a href="https://lin.ee/P9rNWsu" target="_blank" class="cta-button line-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="inline-block mr-2"><path d="M16.2246 13.9124C15.828 13.7399 14.6853 13.1935 14.4795 13.1115C14.2736 13.0295 14.1246 12.9885 13.9757 13.2354C13.8267 13.4824 13.3371 14.0701 13.1881 14.2426C13.0392 14.4151 12.8902 14.4357 12.6843 14.3537C12.4785 14.2717 11.758 14.0248 10.8753 13.2354C10.1448 12.5891 9.6552 11.8219 9.50625 11.575C9.3573 11.328 9.4857 11.2056 9.6141 11.0831C9.72995 10.9749 9.8655 10.8142 10.0145 10.6417C10.1634 10.4692 10.2045 10.3468 10.2864 10.1743C10.3684 10.0018 10.3274 9.8504 10.2664 9.72695C10.2054 9.6035 9.7578 8.47105 9.57255 8.03355C9.3945 7.6032 9.21645 7.6613 9.08805 7.65415C8.95965 7.647 8.8107 7.647 8.66175 7.647C8.5128 7.647 8.28195 7.688 8.07615 7.93495C7.87035 8.1819 7.33965 8.69705 7.33965 9.76805C7.33965 10.8391 8.0967 11.8691 8.24565 12.0416C8.3946 12.2141 9.7578 14.1804 11.7035 14.9476C13.6493 15.7149 14.3973 15.6567 14.8941 15.6157C15.3909 15.5747 16.3508 15.0284 16.536 14.4612C16.7213 13.894 16.7213 13.4242 16.6393 13.3422C16.5573 13.2603 16.4284 13.2193 16.2246 13.1373V13.9124Z M12.0001 2.025C6.4862 2.025 2 6.48615 2 12.0001C2 17.514 6.4862 21.975 12.0001 21.975C17.514 21.975 22 17.514 22 12.0001C22 6.48615 17.514 2.025 12.0001 2.025Z"></path></svg>
+                    LINEで無料相談を申し込む
+                </a>
+                 <p class="text-xs text-gray-500 mt-4">「無料レクチャー希望」と送るだけでOKです。</p>
+            </div>
+            
+             <div class="slide">
+                <h2 class="slide-title">行動だけが、<br>未来を変えます。</h2>
+                <div class="visual-element my-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </div>
+                <p class="slide-text">
+                    あなたの発信が、多くの人に届く日を楽しみにしています。
+                </p>
+                <p class="mt-8 font-bold">- くろむ -</p>
+            </div>
+
+
+        </div>
+        
+        <button id="prevBtn" class="nav-button">&lt;</button>
+        <button id="nextBtn" class="nav-button">&gt;</button>
+        <div id="progressBar" class="progress-bar"></div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const progressBar = document.getElementById('progressBar');
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                // Inactivate all slides
+                slides.forEach((slide) => {
+                    slide.classList.remove('active');
+                });
+                
+                // Activate the target slide
+                slides[index].classList.add('active');
+                
+                // Update button states
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === totalSlides - 1;
+
+                // Update progress bar
+                const progressPercentage = ((index + 1) / totalSlides) * 100;
+                progressBar.style.width = `${progressPercentage}%`;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if(e.key === 'ArrowRight') {
+                    nextBtn.click();
+                } else if (e.key === 'ArrowLeft') {
+                    prevBtn.click();
+                }
+            });
+
+            // Initial setup
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
