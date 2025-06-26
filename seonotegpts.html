@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>note特化SEOライターGPT 紹介スライド</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 全体のスタイル設定 */
+        :root {
+            --primary-color: #333;
+            --secondary-color: #00A968;
+            --background-color: #f9f9f9;
+            --slide-bg: #ffffff;
+            --border-color: #e0e0e0;
+            --text-light: #666;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* スライドコンテナのスタイル */
+        .slider-container {
+            width: 100%;
+            max-width: 420px; /* iPhoneの幅を意識したサイズ */
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .slider-aspect-ratio {
+            padding-top: 100%; /* 1:1の正方形を維持 */
+            position: relative;
+        }
+
+        .slider-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* 各スライドのスタイル */
+        .slide {
+            flex: 0 0 100%;
+            width: 100%;
+            background-color: var(--slide-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .slide-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px; /* ボタン追加のため少し調整 */
+            height: 100%;
+            width: 100%;
+        }
+
+        /* テキスト要素のスタイル */
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        p {
+            font-size: 16px;
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.7;
+            white-space: pre-wrap; /* 改行を反映 */
+        }
+        
+        .list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            width: 90%;
+            font-size: 15px;
+        }
+
+        .list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            line-height: 1.6;
+            color: var(--primary-color);
+        }
+
+        .list-icon {
+            color: var(--secondary-color);
+            margin-right: 12px;
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+        }
+
+        /* 視覚要素のスタイル */
+        .visual-element {
+            width: 35%; /* ボタンが入るスペースを確保 */
+            max-width: 110px;
+            height: auto;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary-color);
+        }
+
+        /* ボタンのスタイル */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .nav-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #00A968, #00C37A);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(0, 169, 104, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 169, 104, 0.5);
+        }
+        
+        .line-button {
+            background: #06C755;
+        }
+
+        /* スライドカウンターのスタイル */
+        .slide-counter {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            z-index: 10;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="slider-container">
+        <div class="slider-aspect-ratio">
+            <div class="slider-wrapper">
+                
+                <!-- スライド1: タイトル & CTA -->
+                <div class="slide" data-slide="1">
+                    <div class="slide-content">
+                        <div class="visual-element">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-12h2v4h-2zm0 6h2v2h-2z"/></svg>
+                        </div>
+                        <h2>もうSEO記事で<br>悩むのは終わりにしましょう！</h2>
+                        <p>AIと一緒に“自然に読まれる記事”が<br>サクッと完成するGPT、できました。</p>
+                        <a href="https://chat.openai.com/g/g-685d063837788191a1d54e6b0fe649fe-seote-hua-notezuo-cheng-kun" target="_blank" class="cta-button">今すぐGPTを使ってみる</a>
+                        <p style="font-size:12px; margin-top:0;">（ChatGPTのサイトに移動します）</p>
+                    </div>
+                </div>
+                
+                <!-- スライド2: GPTs紹介 -->
+                <div class="slide" data-slide="2">
+                    <div class="slide-content">
+                        <h2>「SEO特化note作成くん」とは？</h2>
+                        <div class="visual-element">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.47 14.22c.28.32.47.71.53 1.13h-2.11c-.34-1.07-1.3-1.85-2.5-1.85-1.28 0-2.33.9-2.52 2.06-.01 0-.01.01 0 .01h-3.96c-.01 0-.01-.01 0-.01C8.71 16.5 7.66 15.6 6.38 15.6c-1.2 0-2.16.78-2.5 1.85H2v-1.5h1.03c.1-.49.39-.92.79-1.21s.9-.45 1.45-.45c.34 0 .66.07.95.2.3.13.56.32.77.56.32-.39.73-.69 1.2-.89.46-.19.97-.29 1.5-.29s1.04.1 1.5.29c.47.2.88.5 1.2.89.21-.24.47-.43.77-.56.29-.13.61-.2.95-.2.55 0 1.05.16 1.45.45.4.29.69.72.79 1.21H22v1.5h-1.87c.06-.42.25-.81.53-1.13zM15.47 18.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 13c-2.61 0-4.94-1.52-6-3.72.16-.62.4-1.2.72-1.7.33-.5.73-.93 1.2-1.28.47-.35.99-.62 1.55-.79.56-.17 1.15-.26 1.75-.26.6 0 1.19.09 1.75.26.56.17 1.08.44 1.55.79.47.35.87.78 1.2 1.28.32.5.56 1.08.72 1.7C16.94 13.48 14.61 15 12 15z"/></svg>
+                        </div>
+                        <p>SEOに強く、人間味のあるnote記事を<br>AIと対話しながら作れる<br>ChatGPTの拡張機能（GPTs）です。</p>
+                    </div>
+                </div>
+
+                <!-- スライド3: 目次 -->
+                <div class="slide" data-slide="3">
+                    <div class="slide-content">
+                        <h2>本日の内容</h2>
+                        <ul class="list">
+                            <li><span class="list-icon">🤔</span><br>noteの“あるある”な悩み</li>
+                            <li><span class="list-icon">💡</span><br>悩みを解消するGPTの特長</li>
+                            <li><span class="list-icon">🚀</span><br>たった5分で記事が完成する流れ</li>
+                            <li><span class="list-icon">🤝</span><br>もし迷っているあなたへ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 第1章: 問題提起 -->
+                <div class="slide" data-slide="4">
+                    <div class="slide-content">
+                         <h2>頑張って書いたのに…<br>こんな経験ありませんか？</h2>
+                         <div class="visual-element">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm-1.5-6.41l1.5-1.5 1.5 1.5 2.12-2.12 1.41 1.41L15 15.59l-1.5 1.5-1.5-1.5-2.12 2.12-1.41-1.41z"/></svg>
+                        </div>
+                         <p>noteで記事を書き続けるのって、<br>本当に根気がいりますよね。</p>
+                    </div>
+                </div>
+
+                <div class="slide" data-slide="5">
+                    <div class="slide-content">
+                        <h2>【よくある悩み 1】<br>検索にまったく引っかからない</h2>
+                        <div class="visual-element">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.5 6.5 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                        </div>
+                        <p>渾身の記事を投稿しても、<br>誰にも読まれないと<br>さすがに心が折れそうになるものです。</p>
+                    </div>
+                </div>
+                
+                <div class="slide" data-slide="6">
+                    <div class="slide-content">
+                        <h2>【よくある悩み 2】<br>SEOを意識すると文章がカタい</h2>
+                        <div class="visual-element">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM4 18V6h16v12H4zm8-10H8v2h4v2H8v2h4v2H6V8h6v2z"/></svg>
+                        </div>
+                        <p>キーワードを詰め込みすぎて、<br>なんだか機械的な文章に…。<br>読者にも伝わってしまいます。</p>
+                    </div>
+                </div>
+
+                <div class="slide" data-slide="7">
+                    <div class="slide-content">
+                         <h2>【よくある悩み 3】<br>AIっぽさがどうしても抜けない</h2>
+                         <div class="visual-element">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 9h6v2H9V9zm6 4H9v2h6v-2zm-6 4h4v2H9v-2z"/></svg>
+                        </div>
+                         <p>便利なAIツールで書いてもらったけど<br>「これ、本当に自分の言葉かな？」<br>という違和感が残ってしまう。</p>
+                    </div>
+                </div>
+                
+                <div class="slide" data-slide="8">
+                    <div class="slide-content">
+                        <h2>【よくある悩み 4】<br>構成を考えるだけで時間が溶ける</h2>
+                        <div class="visual-element">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                        </div>
+                        <p>「よし、書くぞ！」と意気込んでも、<br>構成づくりで手が止まってしまい、<br>気づけば数時間…。</p>
+                    </div>
+                </div>
+                
+                <div class="slide" data-slide="9">
+                    <div class="slide-content">
+                        <h2>そのモヤモヤ、<br>全部このGPTが解決します</h2>
+                        <div class="visual-element">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        </div>
+                        <p>僕自身が副業時代に欲しかった、<br>「かゆいところに手が届く」機能を<br>すべて詰め込みました。</p>
+                    </div>
+                </div>
+
+                <!-- 第2章: 解決策 -->
+                <div class="slide" data-slide="10">
+                    <div class="slide-content">
+                         <h2>【特長 1】<br>noteのSEOに完全特化</h2>
+                         <div class="visual-element">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 17.08z"/></svg>
+                        </div>
+                         <p>noteで上位表示するための<br>キーワード選定や検索意図の分析を<br>GPTが内部で自動実行してくれます。</p>
+                    </div>
+                </div>
+
+                <div class="slide" data-slide="11">
+                    <div class="slide-content">
+                         <h2>【特長 2】<br>AIっぽさを排除した人間味ある文章</h2>
+                         <div class="visual-element">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </div>
+                         <p>問いかけ、共感、比喩などを駆使し<br>まるで人が書いたような<br>自然な文体を実現します。</p>
+                    </div>
+                </div>
+
+                <div class="slide" data-slide="12">
+                    <div class="slide-content">
+                         <h2>【特長 3】<br>あなたとAIで、一緒に書き上げる</h2>
+                         <div class="visual-element">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        </div>
+                         <p>AIが一方的に書くのではありません。<br>あなたの「OK」がないと次に進まない<br>対話形式で、納得しながら進めます。</p>
+                    </div>
+                </div>
+                
+                <div class="slide" data-slide="13">
+                    <div class="slide-content">
+                         <h2>【特長 4】<br>完成したら、あとはコピペするだけ</h2>
+                         <div class="visual-element">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                        </div>
+                         <p>構成から本文、まとめ、タグまで<br>すべてマークダウン形式で出力。<br>そのままnoteに貼り付けOKです。</p>
+                    </div>
+                </div>
+
+                <!-- 第3章: 使い方 -->
+                <div class="slide" data-slide="14">
+                    <div class="slide-content">
+                        <h2>使い方は、驚くほどシンプル<br>（5分で完了）</h2>
+                        <div class="visual-element">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.25 3.31C13.04 3.12 12.77 3 12.5 3s-.54.12-.75.31L4.05 10.5l-1.42-1.42L9.34 2.38c.78-.78 2.05-.78 2.83 0l6.36 6.36-1.41 1.41L13.25 3.31zM21.41 11.02l-7.78-7.78-1.41 1.41 7.07 7.07-7.07 7.07 1.41 1.41 7.78-7.78c.39-.39.39-1.02 0-1.41z"/></svg>
+                        </div>
+                        <p>専門知識は一切不要です。<br>いくつかの質問に答えるだけ。</p>
+                    </div>
+                </div>
+
+                <div class="slide" data-slide="15">
+                    <div class="slide-content">
+                        <h2>【Step 1】<br>基本情報を入力する</h2>
+                        <div class="visual-element">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"/></svg>
+                        </div>
+                        <p>はじめに「メインキーワード」<br>「読者」「記事の目的」を<br>GPTに伝えるだけです。</p>
+                    </div>
+                </div>
+
+                <div class="slide" data-slide="16">
+                    <div class="slide-content">
+                        <h2>【Step 2】<br>AIの提案を順番に確認する</h2>
+                        <div class="visual-element">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                        </div>
+                        <p>タイトル案 → 構成案 → 導入文…と<br>順番に提案されるので<br>内容をチェックします。</p>
+                    </div>
+                </div>
+
+                <div class="slide" data-slide="17">
+                    <div class="slide-content">
+                        <h2>【Step 3】<br>「OK」か「修正指示」を出す</h2>
+                        <div class="visual-element">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+                        </div>
+                        <p>提案が良ければ「OK」。<br>直してほしければ「〜な感じで」と<br>伝えるだけでOKです。</p>
+                    </div>
+                </div>
+                
+                <div class="slide" data-slide="18">
+                    <div class="slide-content">
+                        <h2>【Step 4】<br>タグ提案＋マークダウン出力</h2>
+                        <div class="visual-element">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+                        </div>
+                        <p>最後にハッシュタグを受け取ったら、<br>記事全体のマークダウンコードを<br>コピーして完成です！</p>
+                    </div>
+                </div>
+
+                <div class="slide" data-slide="19">
+                    <div class="slide-content">
+                        <h2>こんな方に、<br>特に使ってみてほしいです</h2>
+                        <div class="visual-element">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        </div>
+                        <p>一つでも当てはまったら、<br>きっとあなたの力になれるはず。</p>
+                    </div>
+                </div>
+                
+                <div class="slide" data-slide="20">
+                     <div class="slide-content">
+                        <h2>おすすめな人</h2>
+                        <ul class="list">
+                            <li><span class="list-icon">✅</span>個人でnoteを運営している方</li>
+                            <li><span class="list-icon">✅</span>自然なSEO記事を作りたい担当者</li>
+                            <li><span class="list-icon">✅</span>文章力にまだ自信がない初心者さん</li>
+                            <li><span class="list-icon">✅</span>AIで記事品質を上げたい全ての人</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                 <div class="slide" data-slide="21">
+                    <div class="slide-content">
+                        <h2>さっそくお試しください！</h2>
+                        <p>もうSEO記事で悩む時間をなくし、<br>“書く楽しさ”を取り戻しましょう。</p>
+                        <a href="https://chat.openai.com/g/g-685d063837788191a1d54e6b0fe649fe-seote-hua-notezuo-cheng-kun" target="_blank" class="cta-button">今すぐGPTを使ってみる</a>
+                        <p style="font-size:12px; margin-top:10px;">（ChatGPTのサイトに移動します）</p>
+                    </div>
+                </div>
+
+                <!-- 第4章: 行動喚起 -->
+                <div class="slide" data-slide="22">
+                    <div class="slide-content">
+                        <h2>最後に、少しだけ<br>僕の話をさせてください</h2>
+                        <img src="https://pbs.twimg.com/profile_images/1987112026723434496/j2RO2h5Q_400x400.jpg" alt="くろむさんのプロフィール画像" class="profile-img">
+                        <p>はじめまして、くろむと申します。<br>（AI×SNSで月200万稼いでます）</p>
+                    </div>
+                </div>
+                
+                <div class="slide" data-slide="23">
+                    <div class="slide-content">
+                        <h2>僕も昔は、悩んでいました</h2>
+                        <div class="visual-element">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                        </div>
+                        <p>高卒で工場に就職。<br>アフィリエイト副業で月30万を達成し<br>独立したものの、最初は手探りでした。</p>
+                    </div>
+                </div>
+
+                <div class="slide" data-slide="24">
+                    <div class="slide-content">
+                        <h2>もし、まだ迷っているなら…</h2>
+                        <div class="visual-element">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+                        </div>
+                        <p>「自分に使いこなせるか不安…」<br>「やってみたいけど、何から…」<br>その気持ち、よく分かります。</p>
+                    </div>
+                </div>
+                
+                <div class="slide" data-slide="25">
+                    <div class="slide-content">
+                        <h2>1時間だけ、<br>僕に時間をくれませんか？</h2>
+                         <div class="visual-element">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c2.15-.45 3.5-1.68 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                        </div>
+                        <p>1人で悩んで時間を無駄にするなら、<br>無料でサクッと作戦会議しましょう。<br><strong>あなた専用の収益化ロードマップ</strong>を<br>その場で一緒に作ります。</p>
+                    </div>
+                </div>
+
+                <div class="slide" data-slide="26">
+                    <div class="slide-content">
+                        <h2>参加方法はカンタンです</h2>
+                        <p>下のボタンからLINEを追加して<br><strong>「無料レクチャー希望」</strong><br>とだけ送ってください。</p>
+                        <a href="https://lin.ee/P9rNWsu" target="_blank" class="cta-button line-button">LINEで連絡してみる</a>
+                         <p style="font-size:12px; margin-top:10px;">（勧誘などは一切ありません）</p>
+                    </div>
+                </div>
+                
+                <div class="slide" data-slide="27">
+                    <div class="slide-content">
+                         <div class="visual-element">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></svg>
+                        </div>
+                        <h2>最後までご覧いただき<br>ありがとうございました</h2>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <button class="nav-btn prev-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+        </button>
+        <button class="nav-btn next-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+        </button>
+
+        <div class="slide-counter"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM要素の取得
+            const sliderWrapper = document.querySelector('.slider-wrapper');
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const slideCounter = document.querySelector('.slide-counter');
+            
+            // 初期設定
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            // スライドを移動させる関数
+            function goToSlide(slideIndex) {
+                // インデックスが範囲外にならないように制御
+                if (slideIndex < 0) {
+                    slideIndex = 0;
+                }
+                if (slideIndex >= totalSlides) {
+                    slideIndex = totalSlides - 1;
+                }
+
+                // sliderWrapperを動かしてスライドを切り替え
+                sliderWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
+                currentSlide = slideIndex;
+                
+                // ボタンの表示/非表示を更新
+                updateNavButtons();
+                // スライドカウンターを更新
+                updateCounter();
+            }
+
+            // ナビゲーションボタンの表示/非表示を制御する関数
+            function updateNavButtons() {
+                prevBtn.style.display = currentSlide === 0 ? 'none' : 'flex';
+                nextBtn.style.display = currentSlide === totalSlides - 1 ? 'none' : 'flex';
+            }
+            
+            // スライドカウンターを更新する関数
+            function updateCounter() {
+                slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+            }
+
+            // 「次へ」ボタンのイベントリスナー
+            nextBtn.addEventListener('click', () => {
+                goToSlide(currentSlide + 1);
+            });
+
+            // 「前へ」ボタンのイベントリスナー
+            prevBtn.addEventListener('click', () => {
+                goToSlide(currentSlide - 1);
+            });
+            
+            // キーボードの左右矢印キーでの操作
+            document.addEventListener('keydown', (e) => {
+                if(e.key === 'ArrowRight') {
+                    goToSlide(currentSlide + 1);
+                } else if (e.key === 'ArrowLeft') {
+                    goToSlide(currentSlide - 1);
+                }
+            });
+
+            // 初期化
+            goToSlide(0);
+        });
+    </script>
+
+</body>
+</html>
